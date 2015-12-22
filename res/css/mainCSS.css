@@ -1,0 +1,25 @@
+#logo{
+			height:64px;
+		}
+
+.div_Edit{
+	margin:auto !important;
+	width:80%;
+}
+
+#teamTBL tr td{
+	width:50%;
+}
+
+.border{
+border:2px solid #563C4E;
+}
+
+.person_card{
+background-color:#563C4E;
+}
+
+.game_table{
+  padding:10px;
+  width:50%;
+}
