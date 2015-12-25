@@ -19,7 +19,7 @@ function write2(){
 function write3(){
     return "Find the Password <br/>" +
                   "<span style='font-size:0.7em'> Pour avancer tu dois trouver le mot de passe </span> <br/> <br/>" + 
-                  "<span style='font-size:0.7em'> Sans moi je pense que david serait perdu ( moi que sans toi mais bon ;) )</span> <br/>" +
+                  "<span style='font-size:0.7em'> Sans moi je pense que david serait perdu ( moins que sans toi mais bon ;) )</span> <br/>" +
                   "<input id='password' type='text' class='validate' style='text-align:center'><a class='waves-effect waves-teal btn' onclick='validate_Password2()' id='btn'>Send</a>";
 }
 
