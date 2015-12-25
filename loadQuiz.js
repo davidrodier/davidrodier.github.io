@@ -43,7 +43,7 @@ function write6(){
 }
 
 function validate_Password1(){
-    if(document.getElementById("password").value === "ZQ225H"){
+    if(document.getElementById("password").value === "b1" || document.getElementById("password").value === "B1"){
         document.getElementById("game").innerHTML = write2();
     }
 }
@@ -53,12 +53,12 @@ function validate_Quiz1(){
     }
 }
 function validate_Password2(){
-    if(document.getElementById("password").value === "MH543L"){
+    if(document.getElementById("password").value === "d4" || document.getElementById("password").value === "D4"){
         document.getElementById("game").innerHTML = write4();
     }
 }
 function validate_Password3(){
-    if(document.getElementById("password").value === "LP888Z"){
+    if(document.getElementById("password").value === "z2" || document.getElementById("password").value === "Z2"){
         document.getElementById("game").innerHTML = write5();
     }
 }
@@ -68,8 +68,8 @@ function validate_Quiz2(){
     }
 }
 function validate_Password4(){
-    if(document.getElementById("password").value === "KR435A"){
+    if(document.getElementById("password").value === "j8" || document.getElementById("password").value === "J8"){
         document.getElementById("game").innerHTML = "Joyeux Noël !! <br/>" + 
-            "<span style='font-size:0.7em'> Ton cadeau est dans la 'cours' </span>";
+            "<span style='font-size:0.7em'> Tu n'as qu'a soulever le laptop :P </span>";
     }
 }
