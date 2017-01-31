@@ -1,18 +1,20 @@
-var xBlue=0;
-var yBlue=0;
+var xBlue=100;//20
+var yBlue=300;//85
 var hpBlue=10;
 var manaBlue=10;
 var sizeBlue=0;
 var classBlue="";
 var colorBlue="";
+var directBlue="DOWN";
 
-var xRed=0;
-var yRed=0;
+var xRed=100;//450
+var yRed=200;//440
 var hpRed=10;
 var manaRed=10;
 var sizeRed=0;
 var classRed="";
 var colorRed="";
+var directRed="UP";
 
 var turns = 10;
 var WhosTurn = "Blue";
@@ -23,12 +25,6 @@ function setup(){
 	createCanvas(500,600);
 	colorMode(RGB);
 	
-	xBlue=round(random(73, 450));
-	yBlue=round(random(73, 450));
-	
-	xRed=round(random(73, 450));
-	yRed=round(random(73, 450));
-	
 	colorBlue=color(120,120,255);
 	colorRed=color(255,100,100);
 }
@@ -38,8 +34,38 @@ function drawMap(){
 	
 	fill(colorBlue);
 	rect(xBlue, yBlue, sizeBlue, sizeBlue, 360);
+	switch(directBlue)
+	{
+		case "UP":
+		rect(xBlue+(sizeBlue/2), yBlue, 3, 3, 360);
+		break;
+		case "LEFT":
+		rect(xBlue, yBlue+(sizeBlue/2), 3, 3, 360);
+		break;
+		case "RIGHT":
+		rect(xBlue+sizeBlue-3, yBlue+(sizeBlue/2), 3, 3, 360);
+		break;
+		case "DOWN":
+		rect(xBlue+(sizeBlue/2), yBlue+sizeBlue-3, 3, 3, 360);
+		break;
+	}
 	fill(255,100,100);
 	rect(xRed, yRed, sizeRed, sizeRed, 360);
+	switch(directRed)
+	{
+		case "UP":
+		rect(xRed+(sizeRed/2), yRed, 3, 3, 360);
+		break;
+		case "LEFT":
+		rect(xRed, yRed+(sizeRed/2), 3, 3, 360);
+		break;
+		case "RIGHT":
+		rect(xRed+sizeRed-3, yRed+(sizeRed/2), 3, 3, 360);
+		break;
+		case "DOWN":
+		rect(xRed+(sizeRed/2), yRed+sizeRed-3, 3, 3, 360);
+		break;
+	}
 }
 
 function checkTurn(){
@@ -68,21 +94,81 @@ function playTurn(){
 			{
 				yBlue-=5;
 				turns--;
+				directBlue="UP";
 			}
 			break;
 			case "A":
 			xBlue-=5;
 			turns--;
+			directBlue="LEFT";
 			break;
 			case "D":
 			xBlue+=5;
 			turns--;
+			directBlue="RIGHT";
 			break;
 			case "S":
 			if(!(yBlue >= 500-(sizeBlue+1)))
 			{
 				yBlue+=5;
 				turns--;
+				directBlue="DOWN";
+			}
+			break;
+			case "1":
+			switch(classBlue)
+			{
+				case "Warrior":
+				oneWarrior("Blue");
+				break;
+				case "Elementalist":
+				oneElementalist("Blue");
+				break;
+				case "Illusionist":
+				oneIllusionist("Blue");
+				break;
+			}
+			break;
+			case "2":
+			switch(classBlue)
+			{
+				case "Warrior":
+				twoWarrior("Blue");
+				break;
+				case "Elementalist":
+				twoElementalist("Blue");
+				break;
+				case "Illusionist":
+				twoIllusionist("Blue");
+				break;
+			}
+			break;
+			case "3":
+			switch(classBlue)
+			{
+				case "Warrior":
+				threeWarrior("Blue");
+				break;
+				case "Elementalist":
+				threeElementalist("Blue");
+				break;
+				case "Illusionist":
+				threeIllusionist("Blue");
+				break;
+			}
+			break;
+			case "4":
+			switch(classBlue)
+			{
+				case "Warrior":
+				fourWarrior("Blue");
+				break;
+				case "Elementalist":
+				fourElementalist("Blue");
+				break;
+				case "Illusionist":
+				fourIllusionist("Blue");
+				break;
 			}
 			break;
 			default:
@@ -98,21 +184,25 @@ function playTurn(){
 			{
 				yRed-=5;
 				turns--;
+				directRed="UP";
 			}
 			break;
 			case "A":
 			xRed-=5;
 			turns--;
+			directRed="LEFT";
 			break;
 			case "D":
 			xRed+=5;
 			turns--;
+			directRed="RIGHT";
 			break;
 			case "S":
 			if(!(yRed >= 500-(sizeRed+1)))
 			{
 				yRed+=5;
 				turns--;
+				directRed="DOWN";
 			}
 			
 			break;
@@ -162,7 +252,7 @@ function drawUI(){
 	
 	fill(0,0,0);
 	textSize(15);
-	text("MP:" + hpBlue*10, 32, 46);
+	text("MP:" + manaBlue*10, 32, 46);
 	
 	///////////////////////////////////////
 	//				Red					 //
@@ -186,7 +276,7 @@ function drawUI(){
 	
 	fill(0,0,0);
 	textSize(15);
-	text("MP:" + hpRed*10, width-75, 46);
+	text("MP:" + manaRed*10, width-75, 46);
 	///////////////////////////////////////
 	//				Spell				 //
 	///////////////////////////////////////
@@ -391,6 +481,18 @@ function keyReleased(){
 	}else if(keyCode == 32) //Space
 	{
 		temp = "SPACE";
+	}else if(keyCode == 49) //1
+	{
+		temp = "1";
+	}else if(keyCode == 50) //2
+	{
+		temp = "2";
+	}else if(keyCode == 51) //3
+	{
+		temp = "3";
+	}else if(keyCode == 52) //4
+	{
+		temp = "4";
 	}else
 	{
 		temp = 0;
