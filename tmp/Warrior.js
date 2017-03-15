@@ -25,21 +25,21 @@ function oneWarrior(c){
 			switch(directBlue)
 			{
 				case "UP":
-					rect(xBlue, yBlue-50, sizeBlue, sizeBlue);
-					if(xRed<xBlue+sizeRed && xRed>xBlue-sizeRed && yRed<yBlue-50 && yRed>yBlue-50-sizeRed)
+					ellipse(xBlue, yBlue-50, sizeBlue);
+					if(collideCircleCircle(xBlue,yBlue-50,sizeBlue,xRed,yRed,sizeRed)
 					{
 						hpRed-=.5;
 					}
 				break;
 				case "LEFT":
-					rect(xBlue-50, yBlue, sizeBlue, sizeBlue);
+					ellipse(xBlue-50, yBlue, sizeBlue);
 					if(yRed<yBlue+sizeBlue && yRed>yBlue-sizeRed && xRed<xBlue-50+sizeBlue && xRed>xBlue-50-sizeRed)
 					{
 						hpRed-=.5;
 					}
 				break;
 				case "RIGHT":
-					rect(xBlue+50, yBlue, sizeBlue, sizeBlue);
+					ellipse(xBlue+50, yBlue, sizeBlue);
 					if(yRed<yBlue+sizeBlue && yRed>yBlue-sizeRed && xRed<xBlue+50+sizeBlue && xRed>xBlue+50-sizeRed)
 					{
 						hpRed-=.5;
