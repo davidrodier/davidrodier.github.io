@@ -625,7 +625,7 @@ function checkKey(){
 			{
 				Menu = "";
 			}
-			if(player.Pieces[0].dead)
+			if(player.Pieces[0].dead && Menu == "")
 			{
 				Menu = "Select";
 				player.CreateSnek();
