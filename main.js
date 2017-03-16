@@ -5,10 +5,13 @@ var player;
 var point;
 var Moved = false;
 var Menu = "Main";
-var Name = "a";
+var Name = "";
+var input;
+var inputPlaced = false;
 
 function setup(){
 	createCanvas(700,700);
+	input = createInput();
 	InitGame();
 }
 
@@ -59,6 +62,12 @@ function drawMenuMain(){
 		text("Exit", width/2-40, 470);
 }
 
+function showScoreBoard(){
+	Menu = "Score";
+	
+	background(51);
+}
+
 function drawMenuSelect(){
 	background(51);
 	////////////////////////////////////////////////////////
@@ -99,28 +108,28 @@ function drawMenuSelect(){
 	//Text
 	textSize(20);
 	fill(150,150,150);
-	text("Difficulty : ", 250, 120);
+	text("Difficulty : ", 280, 120);
 	var tempBub = 200;
 	switch(speed)
 	{
 		case 1:
 			fill(255,0,0);
-			text("EXTREME NIGGA!!", 350, 120);
+			text("EXTREME NIGGA!!", 375, 120);
 			tmpBub = 200;
 		break;
 		case 3:
 			fill(255,140,0);
-			text("Hard", 350, 120);
+			text("Hard", 375, 120);
 			tmpBub = 300;
 		break;
 		case 5:
 			fill(255,215,0);
-			text("Medium", 350, 120);
+			text("Medium", 375, 120);
 			tmpBub = 400;
 		break;
 		case 7:
 			fill(100,255,0);
-			text("Easy", 350, 120);
+			text("Easy", 375, 120);
 			tmpBub = 500;
 		break;
 	}
@@ -355,6 +364,135 @@ function drawMenuSelect(){
 	}
 	////////////////////////////////////////////////////////
 	//													  //
+	//				Skin Wheel							  //
+	//													  //
+	////////////////////////////////////////////////////////
+	
+	//Left Button
+	fill(100,100,100);
+	rect(50,250,50,50);
+	
+	//Wheel
+	fill(150,150,150);
+	rect(100,250,500,50);
+	
+	//Right Button
+	fill(100,100,100);
+	rect(600,250,50,50);
+	
+	//Left Arrow
+	line(50,275,100,250);
+	line(50,275,100,300);
+	
+	//Right Arrow
+	line(600,250,650,275);
+	line(600,300,650,275);
+	
+	//Indents
+	line(265, 250, 265, 300);
+	line(432, 250, 432, 300);
+	
+	//Skins
+	fill(player.Color);
+	rect(183-gridSize/2,275-gridSize/2,gridSize,gridSize);
+	ellipse(349, 275, gridSize);
+	triangle(515,275-gridSize/2,515-gridSize/2,275+gridSize/2,515+gridSize/2,275+gridSize/2);
+	
+	////////////////////////////////////////////////////////
+	//													  //
+	//				Skin Events							  //
+	//													  //
+	////////////////////////////////////////////////////////
+	
+	if(collidePointRect(mouseX,mouseY, 50,250,50,50))
+	{
+		fill(0,0,0,100);
+		rect(50,250,50,50);
+		if(mouseClicked())
+		{
+			switch(player.Type)
+			{
+				case "Circle":
+				player.Type = "Square";
+				break;
+				case "Triangle":
+				player.Type = "Circle";
+				break;
+			}
+		}
+	}
+	if(collidePointRect(mouseX,mouseY,600,250,50,50))
+	{
+		fill(0,0,0,100);
+		rect(600,250,50,50);
+		if(mouseClicked())
+		{
+			switch(player.Type)
+			{
+				case "Square":
+				player.Type = "Circle";
+				break;
+				case "Circle":
+				player.Type = "Triangle";
+				break;
+			}
+		}
+	}
+	fill(0,0,0);
+	switch(player.Type)
+	{
+		case "Square":
+		triangle(100,250, 265, 250, 183, 260);
+		break;
+		case "Circle":
+		triangle(265,250,432,250,349,260);
+		break;
+		case "Triangle":
+		triangle(432,250,600,250,515,260);
+		break;
+	}
+	fill(150,150,150);
+	text("Skin Selection", 280,320);
+	
+	////////////////////////////////////////////////////////
+	//													  //
+	//				Name								  //
+	//													  //
+	////////////////////////////////////////////////////////
+	
+	if(!inputPlaced)
+	{
+		input.position(width/2-input.width/2,420);
+		input.value(Name);
+		inputPlaced = true;
+	}
+	text("Enter your Name", width/2-input.width/2,400);
+	Name = input.value();
+	
+	////////////////////////////////////////////////////////
+	//													  //
+	//				Score Screen						  //
+	//													  //
+	////////////////////////////////////////////////////////
+	
+	fill(100,100,100);
+	rect(width/2-75, 500, 150, 75);
+	fill(0,0,0);
+	text("View",width/2-20, 535) ;
+	text("Scoreboard", width/2-50,555);
+	
+	if(collidePointRect(mouseX, mouseY, width/2-75, 500, 150, 75))
+	{
+		fill(0,0,0,100);
+		rect(width/2-75, 500,150,75);
+		if(mouseClicked())
+		{
+			showScoreBoard();
+		}
+	}
+	
+	////////////////////////////////////////////////////////
+	//													  //
 	//				Start Button						  //
 	//													  //
 	////////////////////////////////////////////////////////
@@ -368,6 +506,7 @@ function drawMenuSelect(){
 		rect(width/2-100,height-75,200,50);
 		if(mouseClicked() && Name != "")
 		{
+			inputPlaced = false;
 			Menu = "";
 		}
 	}
@@ -375,13 +514,24 @@ function drawMenuSelect(){
 
 function draw(){
 	
+	if(Menu != "Select")
+	{
+		input.position(-50,-50);
+	}
+	
 	if(Menu == "Main")
 	{
+		player.Score=0;
 		drawMenuMain();
 	}
 	else if (Menu == "Select")
 	{
+		player.Score=0;
 		drawMenuSelect();
+	}
+	else if (Menu == "Score")
+	{
+		showScoreBoard();
 	}
 	else if (Menu == "")
 	{

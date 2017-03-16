@@ -144,5 +144,9 @@ function SnekPiece(x,y){
 		{
 			ellipse(this.x*gridSize+(gridSize/2),this.y*gridSize+(gridSize/2), gridSize-5);
 		}
+		else if(player.Type=="Triangle")
+		{
+			triangle(this.x*gridSize+(gridSize/2),this.y*gridSize,this.x*gridSize+(gridSize/2)-(gridSize/2),this.y*gridSize+gridSize,this.x*gridSize+(gridSize/2)+(gridSize/2),this.y*gridSize+gridSize);
+		}
 	}
 }
