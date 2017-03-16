@@ -621,14 +621,14 @@ function checkKey(){
 			}
 			break;
 			case "Space":
-			if(Menu == "Select")
-			{
-				Menu = "";
-			}
 			if(player.Pieces[0].dead && Menu == "")
 			{
 				Menu = "Select";
 				player.CreateSnek();
+			}
+			if(Menu == "Select")
+			{
+				Menu = "";
 			}
 			break;
 		}
