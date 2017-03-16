@@ -506,7 +506,6 @@ function drawMenuSelect(){
 		rect(width/2-100,height-75,200,50);
 		if(mouseClicked() && Name != "")
 		{
-			inputPlaced = false;
 			Menu = "";
 		}
 	}
@@ -568,6 +567,7 @@ function draw(){
 }
 
 function drawMap(){
+	inputPlaced = false;
 	for(i=0;i<=width;i+=gridSize)
 	{
 		line(0,i,width,i);
@@ -621,7 +621,7 @@ function checkKey(){
 			}
 			break;
 			case "Space":
-			if(player.Pieces[0].dead && Menu == "")
+			if(player.Pieces[0].dead)
 			{
 				Menu = "Select";
 				player.CreateSnek();
