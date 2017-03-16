@@ -514,6 +514,8 @@ function drawMenuSelect(){
 
 function draw(){
 	
+	checkKey();
+	
 	if(Menu != "Select")
 	{
 		input.position(-50,-50);
@@ -538,8 +540,6 @@ function draw(){
 		background(150,150,150);
 	
 		drawMap();
-		
-		checkKey();
 		
 		if(!point.On)
 		{
@@ -588,7 +588,7 @@ function drawMap(){
 }
 
 function checkKey(){
-	if(!Moved || player.Pieces[0].dead)
+	if(!Moved || player.Pieces[0].dead || Menu == "Select")
 	{
 		switch(keyDown())
 		{
@@ -625,6 +625,10 @@ function checkKey(){
 			{
 				Menu = "Select";
 				player.CreateSnek();
+			}
+			if(Menu == "Select")
+			{
+				Menu = "";
 			}
 			break;
 		}
