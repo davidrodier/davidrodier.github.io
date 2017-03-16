@@ -626,11 +626,12 @@ function checkKey(){
 				Menu = "Select";
 				player.CreateSnek();
 			}
+			break;
+			case "M":
 			if(Menu == "Select")
 			{
 				Menu = "";
 			}
-			break;
 		}
 	}
 }
@@ -664,6 +665,9 @@ function keyDown(){
 	}else if(keyCode == 32) //Space
 	{
 		temp = "Space";
+	}else if(keyCode == 109) //M
+	{
+		temp = "M";
 	}else
 	{
 		temp = 0;
